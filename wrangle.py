@@ -53,6 +53,8 @@ def acquire_data(use_cache=False):
                         'DEXCHUS':'CHYUAN', 'DEXKOUS':'KRWON',
                         'DEXSIUS':'SPD', 'DEXTAUS':'TWD',
                         'DEXTHUS':'THB', 'DTWEXBGS':'USD_Index'})
+        
+        df.set_index('DATE', inplace=True)
 
         #create dataframe
         df.to_csv('dollarvs_data.csv', index=False)
