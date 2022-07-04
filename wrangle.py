@@ -55,6 +55,8 @@ def acquire_data(use_cache=False):
                         'DEXTHUS':'THB', 'DTWEXBGS':'USD_Index'})
         
         df.set_index('DATE', inplace=True)
+        
+        df['month'] = df.index.strftime('%m-%b')
 
         #create dataframe
         df.to_csv('dollarvs_data.csv', index=False)
