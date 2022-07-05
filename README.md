@@ -48,11 +48,11 @@ _The information backing these calculations are assumptions of an exchange rate 
 |month| actual month |datetime|
 |USD_YEN| purchase power percent for USD to YEN| float64|
 |USD_HKD|purchase power percent for USD to HKD|float64|
-|USD_YUAN| Purchase power percent for USD to Yuan|int64|
-|USD_WON| purchase power percent for USD to Won|datetime|
+|USD_YUAN| Purchase power percent for USD to Yuan|float64|
+|USD_WON| purchase power percent for USD to Won|float64|
 |USD_SPD| purchase power percent for USD to SPD| float64|
-|USD_TWD| purchase power percent for USD to TWD|int64|
-|USD_THB| purchase power percent for USD to thai baht |datetime|
+|USD_TWD| purchase power percent for USD to TWD|float64|
+|USD_THB| purchase power percent for USD to thai baht |float64|
 
 ---
 
@@ -112,7 +112,7 @@ I wish to identify the causes of the massive shift in the declining of certain n
 Recent geo-political and economic events cause expentance, however this venture would take another report or two to fully expand on the what, how, and why.
 
 ## To Reproduce this project
-Head to FRED (link in notebook) to obtain each CSV
+Head to [FRED](https://fred.stlouisfed.org) to obtain each CSV
 - USD to Japanese Yen
 - Korean Won
 - Chinese Yuan
