@@ -35,13 +35,13 @@ def split_data(df):
 
 
 
-def visualize_splits(df):
+def visualize_splits(df1, df2):
     '''Visualizes the 70%/30% split on graph of the specified columns'''
-    for col in train.columns[0:7]:
+    for col in df1.columns[0:7]:
         plt.figure(figsize=(10,8))
         plt.title(f'{col} to US Dollar')
-        plt.plot(train[col])
-        plt.plot(test[col])
+        plt.plot(df1[col])
+        plt.plot(df2[col])
         plt.show()
         
 
@@ -50,7 +50,7 @@ def get_boxplots(df):
     
     for cnt, col in enumerate(df.columns[0:7]):
         plt.subplot(4,2, cnt+1)
-        ax = sns.boxplot(data=train, x='month', y=train[col], order=np.sort(df['month'].unique()))
+        ax = sns.boxplot(data=df, x='month', y=df[col], order=np.sort(df['month'].unique()))
         plt.title(f'2017-2021 Average USD to {col} % on Conversion')
         ax.set_xticklabels([t.get_text()[3:] for t in ax.get_xticklabels()],
                    rotation=0);
@@ -63,7 +63,7 @@ def get_boxplots(df):
 def plot_cot(df):
     plt.figure(figsize=(20,20))
     
-    for cnt, col in enumerate(df.columns[9:16]):
+    for cnt, col in enumerate(df.columns[10:16]):
         y = df[col]
         
         plt.subplot(4,2, cnt+1)
@@ -104,13 +104,40 @@ def get_yen_autocorrelation(df):
     plt.figure(figsize=(15,15))
     for cnt, col in enumerate(df.columns[1:7]):
         plt.subplot(4,2, cnt+1)
-        y = train.JPYEN
-        x = train[col]
+        y = df.JPYEN
+        x = df[col]
 
         y.resample('M').mean().diff().plot(title=f'Volitility of the Japanese Yen vs {col} Over Time', xlabel= ' ')
         x.resample('M').mean().diff().plot(title=f'Volitility of the Japanese Yen vs {col} Over Time', xlabel= ' ')
         plt.legend()
         plt.tight_layout()
+        
+
+# evaluation function to compute rmse
+def evaluate(target_var):
+    rmse = round(sqrt(mean_squared_error(test[target_var], yhat_df[target_var])), 0)
+    return rmse
+
+
+
+
+def plot_and_eval(target_var):
+    plt.figure(figsize = (12,4))
+    plt.plot(train[target_var])
+    plt.plot(test[target_var])
+    plt.plot(yhat_df[target_var])
+    plt.title(target_var)
+    rmse = evaluate(target_var)
+    print(target_var, '-- RMSE: {:.0f}'.format(rmse))
+    plt.show()
+    
+
+# function to store rmse for comparison purposes
+def append_eval_df(model_type, target_var):
+    rmse = evaluate(target_var)
+    d = {'model_type': [model_type], 'target_var': [target_var], 'rmse': [rmse]}
+    d = pd.DataFrame(d)
+    return eval_df.append(d, ignore_index = True)
             
 
         
