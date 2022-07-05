@@ -110,3 +110,18 @@ The USD to Yen is yielding over 35% more per USD than the standard ratio of 1:10
 I wish to identify the causes of the massive shift in the declining of certain national currencies after 2021. 
 
 Recent geo-political and economic events cause expentance, however this venture would take another report or two to fully expand on the what, how, and why.
+
+## To Reproduce this project
+Head to FRED (link in notebook) to obtain each CSV
+- USD to Japanese Yen
+- Korean Won
+- Chinese Yuan
+- Hong Kong Dollar
+- Thai Baht
+- Singapore Dollar
+- Taiwan Dollar
+
+This data should be the most current data.
+
+Utilize the wrangle.py to either rename the CSVs accordingly, or change the information in the .py file to match your csv naming convention. 
+Finally, utilize the explore.py to explore the csvs collected and analyize the most up-to-date data. 
